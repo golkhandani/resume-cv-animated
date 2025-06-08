@@ -20,8 +20,8 @@
     --light-box-bg: rgba(240, 240, 240, 0.85);
     --dark-box-bg: rgba(61, 61, 61, 0.5);
 
-    --light-box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    --dark-box-shadow: 0 0 10px rgba(229, 248, 56, 0.1);
+    --light-box-shadow: 0 0 32px rgba(0, 0, 0, 0.8);
+    --dark-box-shadow: 0 0 32px rgba(246, 251, 197, 0.6);
 
     --light-accent-color: #9c762b;
     --dark-accent-color: #ffe7a3;
@@ -223,11 +223,13 @@ ul {
     cursor: pointer;
 }
 
+img:hover,
 .skills span:hover,
 .links a:hover,
 .btn-download:hover {
     background: var(--accent-color);
     color: var(--bg-color);
+    box-shadow: var(--box-shadow);
 }
 
 .experience {
