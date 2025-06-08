@@ -217,14 +217,15 @@ window.addEventListener('click', e => {
     const stepDelay = releaseDuration / nearbyStars.length;
 
     nearbyStars.forEach(({ i }, index) => {
+        const delay = releaseDelay + index * stepDelay;
         setTimeout(() => {
             releasedGravitation.add(i);
             hoverTimers[i] = 0;
-        }, releaseDelay + index * stepDelay);
+        }, delay);
         // allow glow again
         setTimeout(() => {
             releasedGravitation.delete(i);
-        }, releaseDelay + 2000);
+        }, delay + 100);
     });
 });
 
