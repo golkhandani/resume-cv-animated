@@ -64,7 +64,8 @@ function triggerExplosion(x, y) {
             r: 3 + Math.random() * 2,
             alpha: 1,
             startTime: performance.now(),
-            maxLife: 1000 // in ms
+            life: 100,
+            maxLife: 500 // in ms
         });
     }
 }
@@ -220,6 +221,10 @@ window.addEventListener('click', e => {
             releasedGravitation.add(i);
             hoverTimers[i] = 0;
         }, releaseDelay + index * stepDelay);
+        // allow glow again
+        setTimeout(() => {
+            releasedGravitation.delete(i);
+        }, releaseDelay + 2000);
     });
 });
 
