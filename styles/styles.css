@@ -104,6 +104,8 @@ body {
     line-height: 2;
     background-color: var(--bg-color);
     color: var(--text-color);
+    display: flex;
+    flex-direction: column;
 }
 
 #bgCanvas {
@@ -280,6 +282,12 @@ img:hover,
     padding-bottom: 0.5rem;
 }
 
+.container-heading {
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
 .btn-download {
     display: inline-block;
     margin-top: 1rem;
@@ -306,7 +314,12 @@ footer {
     text-align: center;
     padding: 2rem;
     font-size: 0.9rem;
-    background: #1e293b;
+    background: var(--bg-color);
+    z-index: 1;
+    position: relative;
+    /* bottom: 0;
+    left: 0;
+    right: 0; */
 }
 
 @media (max-width: 600px) {
@@ -318,4 +331,11 @@ footer {
     .links {
         flex-direction: column;
     }
+}
+
+
+.internal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
