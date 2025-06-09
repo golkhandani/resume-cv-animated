@@ -1,6 +1,8 @@
-let isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+function checkIsMobile() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 
-
+let isMobile = checkIsMobile();
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -238,7 +240,7 @@ window.addEventListener('click', e => {
 
 window.addEventListener('resize', () => {
     updateExternalNodes();
-    isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    isMobile = checkIsMobile();
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
 });
