@@ -1,3 +1,6 @@
+let isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -6,7 +9,7 @@ let height = canvas.height = window.innerHeight;
 let mouse = { x: width / 2, y: height / 2 };
 
 let stars = [
-    ...Array.from({ length: 150 }, () => [
+    ...Array.from({ length: isMobile ? 50 : 150 }, () => [
         Math.random() * width,
         Math.random() * height,
         Math.random() * 2 + 1,
@@ -52,6 +55,7 @@ function updateExternalNodes() {
 }
 
 function triggerExplosion(x, y) {
+    if (isMobile) return;
     const particleCount = 15;
     for (let i = 0; i < particleCount; i++) {
         const angle = Math.random() * 2 * Math.PI;
@@ -75,12 +79,14 @@ function animate() {
 
     ctx.fillStyle = themeColors.starColor;
     stars.forEach(([x, y, r]) => {
+        if (isMobile) return;
         ctx.beginPath();
         ctx.arc(x, y, r, 0, 2 * Math.PI);
         ctx.fill();
     });
 
     stars.forEach(([x, y, r], i) => {
+        if (isMobile) return;
         const dx = mouse.x - x;
         const dy = mouse.y - y;
         const dist = Math.sqrt(dx * dx + dy * dy) || 0.0001;
@@ -171,6 +177,7 @@ function animate() {
 }
 
 window.addEventListener('mousemove', e => {
+    if (isMobile) return;
     mouse.x = e.clientX;
     mouse.y = e.clientY;
 
@@ -231,6 +238,7 @@ window.addEventListener('click', e => {
 
 window.addEventListener('resize', () => {
     updateExternalNodes();
+    isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
 });
