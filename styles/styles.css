@@ -1,0 +1,394 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --light-bg-color: #e3e1e1;
+    --dark-bg-color: #1d1d1d;
+
+    --light-btn-color: #cfcfcf;
+    --dark-btn-color: #282828;
+
+    --light-text-color: #000000;
+    --dark-text-color: #f8fafc;
+
+    --light-link-hover: #3c3c3c;
+    --dark-link-hover: #d6eaff;
+
+    --light-box-bg: rgba(240, 240, 240, 0.85);
+    --dark-box-bg: rgba(61, 61, 61, 0.5);
+
+    --light-box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+    --dark-box-shadow: 0 0 8px rgba(245, 248, 219, 0.386);
+
+    --light-accent-color: #9c762b;
+    --dark-accent-color: #ffe7a3;
+
+    --light-secondary-color: #f9ac11;
+    --dark-secondary-color: #ffffff;
+
+    --light-star-color: #000000c2;
+    --dark-star-color: #ffebb54a;
+
+    --light-line-color: #000000cb;
+    --dark-line-color: #ffffff49;
+
+    --light-glow-color: #000000;
+    --dark-glow-color: #ffffff;
+
+    --bg-color: var(--dark-bg-color);
+    --btn-color: var(--dark-btn-color);
+    --text-color: var(--dark-text-color);
+    --link-hover: var(--dark-link-hover);
+    --box-bg: var(--dark-box-bg);
+    --box-shadow: var(--dark-box-shadow);
+    --accent-color: var(--dark-accent-color);
+    --secondary-color: var(--dark-secondary-color);
+    --star-color: var(--dark-star-color);
+    --line-color: var(--dark-line-color);
+    --glow-color: var(--dark-glow-color);
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: var(--light-bg-color);
+        --btn-color: var(--light-btn-color);
+        --text-color: var(--light-text-color);
+        --link-hover: var(--light-link-hover);
+        --box-bg: var(--light-box-bg);
+        --box-shadow: var(--light-box-shadow);
+        --accent-color: var(--light-accent-color);
+        --secondary-color: var(--light-secondary-color);
+        --star-color: var(--light-star-color);
+        --line-color: var(--light-line-color);
+        --glow-color: var(--light-glow-color);
+    }
+}
+
+[data-theme="dark"] {
+    --bg-color: var(--dark-bg-color);
+    --btn-color: var(--dark-btn-color);
+    --text-color: var(--dark-text-color);
+    --link-hover: var(--dark-link-hover);
+    --box-bg: var(--dark-box-bg);
+    --box-shadow: var(--dark-box-shadow);
+    --accent-color: var(--dark-accent-color);
+    --secondary-color: var(--dark-secondary-color);
+    --star-color: var(--dark-star-color);
+    --line-color: var(--dark-line-color);
+    --glow-color: var(--dark-glow-color);
+}
+
+[data-theme="light"] {
+    --bg-color: var(--light-bg-color);
+    --btn-color: var(--light-btn-color);
+    --text-color: var(--light-text-color);
+    --link-hover: var(--light-link-hover);
+    --box-bg: var(--light-box-bg);
+    --box-shadow: var(--light-box-shadow);
+    --accent-color: var(--light-accent-color);
+    --secondary-color: var(--light-secondary-color);
+    --star-color: var(--light-star-color);
+    --line-color: var(--light-line-color);
+    --glow-color: var(--light-glow-color);
+}
+
+
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+    font-family: 'Nunito Sans', sans-serif;
+    line-height: 2;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+#bgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+}
+
+.theme-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+    background-color: var(--accent-color);
+    border-radius: 34px;
+    cursor: pointer;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--bg-color);
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+input:checked+.slider:before {
+    transform: translateX(22px);
+}
+
+header {
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header img {
+    width: 150px;
+    border-radius: 50%;
+    margin-top: 1rem;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 1px var(--accent-color),
+            0 0 1px var(--accent-color),
+            0 0 1px var(--accent-color);
+    }
+
+    50% {
+        text-shadow: 0 0 2px var(--accent-color),
+            0 0 4px var(--accent-color),
+            0 0 4px var(--accent-color);
+    }
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-top: 1rem;
+}
+
+header h1 a {
+    text-decoration: none;
+    color: var(--text-color);
+    animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.container {
+    width: 100%;
+    max-width: 1270px;
+    margin: auto;
+    padding: 2rem;
+    position: relative;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+section {
+    margin-bottom: 3rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+}
+
+.skills,
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.skills span,
+.links a,
+.btn-download {
+    background: var(--btn-color);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+img:hover,
+.skills span:hover,
+.links a:hover,
+.btn-download:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    box-shadow: var(--box-shadow);
+}
+
+.experience {
+    padding-left: 1rem;
+}
+
+.job-entry {
+    margin-bottom: 2rem;
+}
+
+.job-entry .job-title {
+    font-weight: bold;
+}
+
+.job-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.company-label {
+    font-weight: 600;
+}
+
+.job-date {
+    opacity: 0.9;
+    font-size: 0.9rem;
+    align-self: center;
+}
+
+.job-entry hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+    margin: 2rem 0;
+}
+
+.content-box {
+    background-color: var(--box-bg);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    /* No width needed */
+}
+
+
+.section-heading {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+}
+
+.container-heading {
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+.btn-download {
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.glow-link {
+    color: #d1e8ff;
+    text-decoration: underline;
+    position: relative;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.glow-link:hover,
+.glow-link:visited,
+.glow-link:link {
+    color: var(--link-hover);
+}
+
+.glow-link:hover {
+    text-shadow: 0 0 8px var(--link-hover), 0 0 12px var(--link-hover);
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    background: var(--bg-color);
+    z-index: 1;
+    position: relative;
+    /* bottom: 0;
+    left: 0;
+    right: 0; */
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .skills,
+    .links {
+        flex-direction: column;
+    }
+}
+
+
+.internal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.blog-list {
+    padding-left: 1rem;
+    line-height: 2;
+}
+
+.blog-list a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.blog-list a:hover {
+    color: var(--link-hover);
+}

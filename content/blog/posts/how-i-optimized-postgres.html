@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Reza Golkhandani</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+
+<body>
+    <canvas id="bgCanvas" style="background-color: var(--bg-color); pointer-events: none;"></canvas>
+    <label class="theme-toggle">
+        <input type="checkbox" id="themeToggle" />
+        <span class="slider"></span>
+    </label>
+    <header>
+        <h1><a href="/">Reza Golkhandani</a></h1>
+        <h2>Backend Developer | Full Stack Developer</h2>
+        <p>Node.js | C# | PHP | React | WPF | Flutter </p>
+        <img src="/assets/image.jpg" alt="Reza Golkhandani">
+
+    </header>
+
+    <div class="container">
+        <div class="links internal">
+            <a id="cvDownload" href="/assets/Reza Golkhandani - June-05-2025 - b1.pdf" download>📄
+                Download CV</a>
+            <a href="mailto:golkhandani@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/golkhandani" target="_blank">LinkedIn</a>
+            <a href="https://github.com/golkhandani" target="_blank">GitHub</a>
+            <a href="https://dev.to/golkhandani" target="_blank">Dev.to</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-box">
+            <h2 class="section-heading">Don't Ever Use LIMIT Again.</h2>
+            <p><strong>Main Point:</strong> Offset-based pagination using <code>LIMIT</code> and <code>OFFSET</code> is
+                simple but inefficient for large datasets. Cursor-based pagination is faster and more scalable.</p>
+
+            <h3>Key Concepts</h3>
+            <ul>
+                <li><strong>Offset-based pagination:</strong> Uses <code>LIMIT ... OFFSET ...</code>. Slows down for
+                    deep pages because it must scan and skip rows. Example: <code>LIMIT 10 OFFSET 10000</code> took
+                    ~57ms.</li>
+                <li><strong>Cursor-based pagination:</strong> Uses a unique identifier (e.g., <code>user_id</code>) to
+                    resume fetching. Example: <code>WHERE user_id > 'last_id' LIMIT 10</code> took ~7ms.</li>
+            </ul>
+
+            <h3>Ordering with Non-Unique Fields</h3>
+            <p>If ordering by a non-unique field like <code>first_name</code>, combine it with a unique field:</p>
+            <pre><code>WHERE
+  first_name >= 'Jammie'
+  AND (
+    user_id > 'last_user_id'
+    OR first_name > 'Jammie'
+  )
+ORDER BY first_name, user_id
+LIMIT 10</code></pre>
+
+            <h3>Conclusion</h3>
+            <p>Cursor-based pagination offers much better performance, especially with large datasets. Offset pagination
+                is okay for small tables or admin tools, but should be avoided in high-scale production queries.</p>
+            <a href="https://dev.to/golkhandani/don-t-ever-use-limit-fetch-offset-skip-again-2gm7" target="_blank">Read
+                The Full Article</a>
+
+        </section>
+
+        <section class="content-box">
+            <h2 class="section-heading">Connect with Me</h2>
+            <div class="links">
+                <a href="mailto:golkhandani@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/golkhandani" target="_blank">LinkedIn</a>
+                <a href="https://github.com/golkhandani" target="_blank">GitHub</a>
+                <a href="https://dev.to/golkhandani" target="_blank">Dev.to</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Reza Golkhandani. All rights reserved.</p>
+    </footer>
+
+    <script src="/scripts/theme.js"></script>
+    <script src="/scripts/stars.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visionary Planner | ISTE Standards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+</head>
+
+<body>
+    <canvas id="bgCanvas" style="background-color: var(--bg-color); pointer-events: none;"></canvas>
+    <label class="theme-toggle">
+        <input type="checkbox" id="themeToggle" />
+        <span class="slider"></span>
+    </label>
+
+    <header>
+        <h1><a href="/">Reza Golkhandani</a></h1>
+        <h2>Backend Developer | Full Stack Developer | Instructor | Explorer</h2>
+        <img src="/assets/image.jpg" alt="Reza Golkhandani">
+    </header>
+
+    <div class="container">
+        <section class="content-box">
+            <h2 class="section-heading">Programming Summative Assessment</h2>
+            <p><strong>Course:</strong> Information Technology</p>
+            <p><strong>Title:</strong> Computer Programming</p>
+            <p><strong>Grade:</strong> 12</p>
+            <p><strong>Topic:</strong> Arrays, Files, and Searching</p>
+            <p><strong>Designed by:</strong> Mohammadreza Rahimiangolkhandani (1301459)</p>
+            <p><strong>Institution:</strong> New York Institute of Technology (NYIT)</p>
+            <p><strong>Professor:</strong> Dr. Darren Francis</p>
+            <p><strong>Date:</strong> 2022 - 07 - 02</p>
+            <p><a class="glow-link" href="https://golkhandani.academichosting.ca"
+                    target="_blank">https://golkhandani.academichosting.ca</a></p>
+            <blockquote>“Be the one you love, do what you love.”</blockquote>
+            <h3>Rationale Guiding Questions</h3>
+            <ol>
+                <li>What is the purpose of your assessment?
+                    <ul>
+                        <li>Analyze the knowledge and proficiency of the student in working with arrays, files, and
+                            search functions.</li>
+                        <li>Analyze students’ ability to identify problems and come up with efficient solutions.</li>
+                    </ul>
+                </li>
+                <li>Identify the content (goals/outcomes) to be assessed:
+                    <ul>
+                        <li>Problem-solving using arrays, search, and file handling</li>
+                        <li>Efficiency in solutions</li>
+                        <li>Familiarity with array techniques and concepts</li>
+                    </ul>
+                </li>
+                <li>Design considerations:
+                    <ul>
+                        <li>Rubrics describing ideal performance</li>
+                        <li>Creative freedom in solution methods</li>
+                        <li>Clear parameters (length, grading, date, etc.)</li>
+                    </ul>
+                </li>
+                <li>Procedures and Responsibilities:
+                    <ul>
+                        <li><strong>Teachers:</strong> Tag questions by objectives, blind grading, timely feedback</li>
+                        <li><strong>Students:</strong> Study via feedback, avoid sharing answers</li>
+                    </ul>
+                </li>
+                <li>Supporting student learning:
+                    <ul>
+                        <li>Motivates study</li>
+                        <li>Reveals learning gaps</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>Assessment Instructions</h3>
+            <ul>
+                <li>No communication between students</li>
+                <li>Free choice of IDE</li>
+                <li>Exit allowed upon early completion</li>
+            </ul>
+
+            <h4>Part 1: Definitions and Concepts</h4>
+            <ol>
+                <li>Define:
+                    <ul>
+                        <li>Space complexity</li>
+                        <li>Time complexity</li>
+                    </ul>
+                </li>
+                <li>Difference between Map, Set, and List</li>
+            </ol>
+
+            <h4>Part 2: Application</h4>
+            <p><strong>Story:</strong> Coffee machine storing customer order data (name, date, price)</p>
+            <ul>
+                <li>Alphabetically order the data</li>
+                <li>Find names starting with M/m</li>
+                <li>Customers with at least one item over $2</li>
+                <li>Customers spending more than $10 last month</li>
+                <li>Group daily data by name and order</li>
+            </ul>
+
+            <h4>Part 3: Code Analysis</h4>
+            <pre><code>
+                fun combinationSum3(k: Int, n: Int): List<List<Int>> {
+                val result = mutableSetOf<List<Int>>()
+                fun dfs(i: Int, current: List<Int>, sum: Int) {
+                    if (sum == n) {
+                        if (current.size == k){
+                            result.add(current)
+                        }
+                    }
+                    for (j in i..9) {
+                        if (sum + j > n) break
+                        dfs(j + 1, current + j, sum + j)
+                    }
+                }
+                dfs(1, emptyList(), 0)
+                return result.toList()
+            }
+</code></pre>
+            <ol>
+                <li>Calculate time and space complexity</li>
+                <li>Rewrite with better time complexity</li>
+                <li>Rewrite with better space complexity</li>
+            </ol>
+
+            <h3>References</h3>
+            <ul>
+                <li><a href="https://leetcode.com" target="_blank">LeetCode</a></li>
+                <li><a href="https://www.td.org/professional-partner-content/the-importance-of-summative-and-formative-assessments-within-a-training-program"
+                        target="_blank">TD.org – Assessment</a></li>
+                <li><a href="https://www.splashlearn.com/blog/what-makes-summative-assessment-powerful-tool-for-teachers"
+                        target="_blank">SplashLearn – Summative Assessments</a></li>
+                <li><a href="https://poorvucenter.yale.edu/Formative-Summative-Assessments" target="_blank">Yale –
+                        Assessments</a></li>
+            </ul>
+
+            <p><a href="/assets/ITSE Standards/2- Visionary Planner/Standard-2.c.pdf" target="_blank">Download original
+                    file</a></p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Reza Golkhandani. All rights reserved.</p>
+    </footer>
+
+    <script src="/scripts/theme.js"></script>
+    <script src="/scripts/stars.js"></script>
+    <script src="/scripts/resume.js"></script>
+</body>
+
+</html>
