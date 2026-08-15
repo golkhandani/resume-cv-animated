@@ -1,6 +1,6 @@
-const themeToggle = document.getElementById('themeToggle');
-const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-const savedTheme = localStorage.getItem('theme');
+/* Theme state. Runs before the other scripts so they can read live colours. */
+
+const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
 function hexToRgb(hex) {
     const parsed = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -12,49 +12,58 @@ function hexToRgb(hex) {
 }
 
 function applyTheme(theme) {
-    // <html> is styled too, and its background is what fills the page beyond
-    // body's box — so both elements need the attribute or the two disagree.
+    // <html> carries the page background, <body> is what the colour probe
+    // reads — both need the attribute or the two can disagree.
     document.documentElement.setAttribute('data-theme', theme);
     document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    try {
+        localStorage.setItem('theme', theme);
+    } catch (e) {
+        /* private mode — theme just won't persist */
+    }
 }
-
-
-themeToggle.addEventListener('click', () => {
-    const newTheme = document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    applyTheme(newTheme);
-});
 
 const themeColors = {
     update() {
         const style = getComputedStyle(document.body);
-        this.starColor = style.getPropertyValue('--star-color').trim();
-        this.lineColor = style.getPropertyValue('--line-color').trim();
-        this.glowColor = style.getPropertyValue('--glow-color').trim();
-        this.accentColor = style.getPropertyValue('--accent-color').trim();
-        this.secondaryColor = style.getPropertyValue('--secondary-color').trim();
-        this.alertColor = style.getPropertyValue('--alert-color').trim();
+        const read = name => style.getPropertyValue(name).trim();
+        this.starColor = read('--star-color');
+        this.lineColor = read('--line-color');
+        this.glowColor = read('--glow-color');
+        this.accentColor = read('--accent-color');
+        this.secondaryColor = read('--secondary-color');
+        this.alertColor = read('--alert-color');
     },
     starColor: '',
     lineColor: '',
     glowColor: '',
     accentColor: '',
     secondaryColor: '',
-    alertColor: '',
-}
-const observer = new MutationObserver(() => themeColors.update());
-observer.observe(document.body, { attributes: true, attributeFilter: ['data-theme'] });
+    alertColor: ''
+};
 
-
-if (savedTheme) {
-    applyTheme(savedTheme);
-} else {
-    applyTheme(prefersDarkScheme.matches ? 'dark' : 'light');
+// The inline bootstrap in <head> already picked a theme to avoid a flash of
+// the wrong scheme; adopt it rather than deciding again.
+let savedTheme = document.documentElement.getAttribute('data-theme');
+if (!savedTheme) {
+    try {
+        savedTheme = localStorage.getItem('theme');
+    } catch (e) {
+        /* ignore */
+    }
 }
+
+applyTheme(savedTheme || (prefersDarkScheme.matches ? 'dark' : 'light'));
 themeColors.update();
 
-// The header glitch clones read their text from data-text, so every page gets
-// it wired up here instead of duplicating the attribute across 20+ files.
-document.querySelectorAll('header h1 a').forEach(el => {
-    el.setAttribute('data-text', el.textContent.trim());
+new MutationObserver(() => themeColors.update())
+    .observe(document.body, { attributes: true, attributeFilter: ['data-theme'] });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+    toggle.checked = document.body.getAttribute('data-theme') === 'light';
+    toggle.addEventListener('change', () => {
+        applyTheme(toggle.checked ? 'light' : 'dark');
+    });
 });

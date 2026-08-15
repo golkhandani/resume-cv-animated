@@ -2,44 +2,123 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reza Golkhandani | Full Stack Developer</title>
+    <meta name="description"
+        content="Reza Golkhandani — backend and full stack developer, instructor and explorer. Node.js, C#, PHP, React, WPF, Flutter.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="/styles/styles.css">
-
-
+    <script>
+        (function () { var d = document.documentElement; d.classList.add('js'); try { var t = localStorage.getItem('theme'); if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; d.setAttribute('data-theme', t); } catch (e) { } })();
+    </script>
 </head>
 
 <body>
-    <canvas id="bgCanvas" style="background-color: var(--bg-color); pointer-events: none;"></canvas>
-    <label class="theme-toggle">
-        <input type="checkbox" id="themeToggle" />
-        <span class="slider"></span>
-    </label>
-    <header>
-        <h1><a href="/">Reza Golkhandani</a></h1>
-        <h2>Backend Developer | Full Stack Developer | Instructor | Explorer</h2>
-        <img src="/assets/image.jpg" alt="Reza Golkhandani">
-    </header>
+    <canvas id="bgCanvas" aria-hidden="true"></canvas>
+    <div class="fx-grid" aria-hidden="true"></div>
+    <div class="fx-scan" aria-hidden="true"></div>
 
-
-    <div class="container">
-        <div class="links internal">
-            <a href="/content/sse/index.html" target="_blank">Software Development</a>
-            <a href="/content/edu/index.html" target="_blank">Instructor/Mentor</a>
-            <a href="/content/blog/index.html" target="_blank">Blog</a>
-        </div>
+    <div class="boot" aria-hidden="true">
+        <p class="boot__line">&gt; Establishing uplink <b>........ OK</b></p>
+        <p class="boot__line">&gt; Decrypting profile <b>......... OK</b></p>
+        <p class="boot__line">&gt; Access granted <b>// R.GOLKHANDANI</b></p>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Reza Golkhandani. All rights reserved.</p>
-    </footer>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="topbar">
+        <a class="topbar__id" href="/">
+            <img src="/assets/image.jpg" alt="Reza Golkhandani" width="24" height="24">
+            <span class="topbar__brand">R.GOLKHANDANI</span>
+        </a>
+        <div class="topbar__path">Home</div>
+        <span class="topbar__spacer"></span>
+        <span class="topbar__stat">
+            <i class="pulse" aria-hidden="true"></i>online
+            <b data-clock>--:--:--</b>
+        </span>
+        <label class="theme-toggle" title="Toggle light / dark">
+            <input type="checkbox" id="themeToggle">
+            <span class="sr-only">Toggle light mode</span>
+            <span class="slider" aria-hidden="true"></span>
+        </label>
+    </header>
+
+    <nav class="rail" aria-label="Primary">
+        <a class="rail__mark" href="/" aria-label="Home">RG</a>
+        <div class="rail__nav">
+            <a href="/">Home</a>
+            <a href="/content/sse/index.html">Dev</a>
+            <a href="/content/edu/index.html">Teach</a>
+            <a href="/content/blog/index.html">Blog</a>
+        </div>
+        <span class="rail__foot">NIGHT CITY // 2025</span>
+    </nav>
+
+    <div class="shell">
+        <main id="main">
+            <div class="wrap">
+                <section class="hero hero--home">
+                    <div>
+                        <div class="hero__eyebrow">
+                            <span class="tag">Personnel file // 001</span>
+                        </div>
+                        <h1 class="hero__name">
+                            <span class="line glitch" data-text="Reza">Reza</span>
+                            <span class="line glitch" data-text="Golkhandani">Golkhandani</span>
+                        </h1>
+                        <ul class="hero__roles">
+                            <li>Backend Developer</li>
+                            <li>Full Stack Developer</li>
+                            <li>Instructor</li>
+                            <li>Explorer</li>
+                        </ul>
+                        <p class="hero__stack">Node.js | C# | PHP | React | WPF | Flutter</p>
+                    </div>
+
+                    <div class="portrait">
+                        <img src="/assets/image.jpg" alt="Reza Golkhandani">
+                        <div class="portrait__sweep" aria-hidden="true"></div>
+                    </div>
+                </section>
+
+                <nav class="shards" aria-label="Sections">
+                    <a class="shard" href="/content/sse/index.html" target="_blank">
+                        <span class="shard__idx">01 // Engineering</span>
+                        <span class="shard__title">Software Development</span>
+                        <span class="shard__go">Open file <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                    <a class="shard" href="/content/edu/index.html" target="_blank">
+                        <span class="shard__idx">02 // Teaching</span>
+                        <span class="shard__title">Instructor/Mentor</span>
+                        <span class="shard__go">Open file <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                    <a class="shard" href="/content/blog/index.html" target="_blank">
+                        <span class="shard__idx">03 // Writing</span>
+                        <span class="shard__title">Blog</span>
+                        <span class="shard__go">Open file <span aria-hidden="true">&rarr;</span></span>
+                    </a>
+                </nav>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer__inner">
+                <span class="footer__mark">// EOF</span>
+                <span>&copy; 2025 Reza Golkhandani. All rights reserved.</span>
+                <span>Built in Vancouver, BC</span>
+            </div>
+        </footer>
+    </div>
 
     <script src="/scripts/theme.js"></script>
-    <script src="/scripts/stars.js"></script>
+    <script src="/scripts/background.js"></script>
+    <script src="/scripts/hud.js"></script>
 </body>
 
 </html>
