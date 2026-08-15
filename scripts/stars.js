@@ -1,5 +1,6 @@
 function checkIsMobile() {
-    return navigator.userAgentData.mobile || width < 720;
+    const uaMobile = navigator.userAgentData && navigator.userAgentData.mobile;
+    return Boolean(uaMobile) || window.innerWidth < 720;
 }
 
 const canvas = document.getElementById('bgCanvas');
@@ -53,6 +54,16 @@ let explosions = [];
 let externalNodes = [];
 let closestEl = null;
 
+// Vertical "rain" of glyphs, Night City style
+const GLYPHS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノ0123456789ABCDEF<>[]{}/\\|=+*#';
+const rainDrops = Array.from({ length: isMobile ? 10 : 26 }, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    speed: 0.6 + Math.random() * 1.8,
+    glyph: GLYPHS[Math.floor(Math.random() * GLYPHS.length)],
+    swapAt: 0
+}));
+
 function updateExternalNodes() {
     externalNodes = [...document.querySelectorAll('.btn-download, .links a, .skills span')].map(el => {
         const rect = el.getBoundingClientRect();
@@ -79,15 +90,46 @@ function triggerExplosion(x, y) {
     }
 }
 
+// Nodes are drawn as chamfered squares — the UI language of the rest of the page
+function drawNode(x, y, r, color) {
+    const s = r * 1.6;
+    const cut = s * 0.45;
+    ctx.beginPath();
+    ctx.moveTo(x - s + cut, y - s);
+    ctx.lineTo(x + s, y - s);
+    ctx.lineTo(x + s, y + s - cut);
+    ctx.lineTo(x + s - cut, y + s);
+    ctx.lineTo(x - s, y + s);
+    ctx.lineTo(x - s, y - s + cut);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+}
+
+function drawRain(now) {
+    ctx.font = '14px "Share Tech Mono", monospace';
+    ctx.fillStyle = themeColors.lineColor;
+    rainDrops.forEach(drop => {
+        if (now > drop.swapAt) {
+            drop.glyph = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+            drop.swapAt = now + 90 + Math.random() * 400;
+        }
+        ctx.fillText(drop.glyph, drop.x, drop.y);
+        drop.y += drop.speed;
+        if (drop.y > height + 14) {
+            drop.y = -14;
+            drop.x = Math.random() * width;
+        }
+    });
+}
+
 function animate() {
     ctx.clearRect(0, 0, width, height);
 
-    ctx.fillStyle = themeColors.starColor;
-    stars.forEach(([x, y, r]) => {
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, 2 * Math.PI);
-        ctx.fill();
-    });
+    const now = performance.now();
+    drawRain(now);
+
+    stars.forEach(([x, y, r]) => drawNode(x, y, r, themeColors.starColor));
 
     stars.forEach(([x, y, r], i) => {
         const dx = mouse.x - x;
@@ -106,10 +148,16 @@ function animate() {
                 explosionTimers[i] = null;
             }
             if (hoverTimers[i] > 30) {
+                // Charged node: a small bright core framed by a scanning reticle
+                const radius = r * Math.min(10, hoverTimers[i] / 5);
+                drawNode(x, y, r * 1.4, themeColors.accentColor);
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = themeColors.accentColor;
+                ctx.strokeRect(x - radius, y - radius, radius * 2, radius * 2);
+                ctx.strokeStyle = themeColors.alertColor;
                 ctx.beginPath();
-                ctx.arc(x, y, r * Math.min(10, hoverTimers[i] / 5), 0, 2 * Math.PI);
-                ctx.fillStyle = themeColors.starColor;
-                ctx.fill();
+                ctx.arc(x, y, radius * 0.7, 0, 2 * Math.PI);
+                ctx.stroke();
             }
         } else {
             if (hoverTimers[i] > 30 && !explosionTimers[i]) {
@@ -121,6 +169,7 @@ function animate() {
         }
     });
 
+    ctx.lineWidth = 1;
     for (let i = 0; i < stars.length; i++) {
         for (let j = i + 1; j < stars.length; j++) {
             const [x1, y1] = stars[i];
@@ -136,6 +185,12 @@ function animate() {
                 ctx.moveTo(x1, y1);
                 ctx.lineTo(x2, y2);
                 ctx.stroke();
+
+                // Data packet riding the link
+                if (glow) {
+                    const t = (now % 1000) / 1000;
+                    drawNode(x1 + (x2 - x1) * t, y1 + (y2 - y1) * t, 1.5, themeColors.accentColor);
+                }
             }
         }
     }
@@ -160,7 +215,6 @@ function animate() {
         return [x, y, r, vx, vy];
     });
 
-    const now = performance.now();
     explosions = explosions.filter(p => now - p.startTime < p.maxLife);
     explosions.forEach(p => {
         p.x += p.vx;
@@ -169,11 +223,8 @@ function animate() {
         p.alpha = 1 - progress;
         const radius = p.r * (1 - progress);
 
-        const { r, g, b } = hexToRgb(themeColors.accentColor) || { r: 255, g: 200, b: 100 };
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, radius, 0, 2 * Math.PI);
-        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.alpha})`;
-        ctx.fill();
+        const { r, g, b } = hexToRgb(themeColors.accentColor) || { r: 252, g: 238, b: 10 };
+        drawNode(p.x, p.y, radius, `rgba(${r}, ${g}, ${b}, ${p.alpha})`);
     });
 
     requestAnimationFrame(animate);

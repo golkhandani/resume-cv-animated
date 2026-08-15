@@ -5,38 +5,39 @@
 }
 
 :root {
-    --light-bg-color: #e3e1e1;
-    --dark-bg-color: #1d1d1d;
+    /* ── NIGHT CITY (dark) ─────────────────────────────── */
+    --dark-bg-color: #0a0a0f;
+    --dark-btn-color: #14141d;
+    --dark-text-color: #e6f7ff;
+    --dark-link-hover: #00f0ff;
+    --dark-box-bg: rgba(13, 15, 24, 0.72);
+    --dark-box-shadow: 0 0 18px rgba(252, 238, 10, 0.18);
+    --dark-accent-color: #fcee0a;
+    --dark-secondary-color: #00f0ff;
+    --dark-alert-color: #ff003c;
+    --dark-star-color: #00f0ff8c;
+    --dark-line-color: #00f0ff2e;
+    --dark-glow-color: #fcee0a;
+    --dark-grid-color: rgba(0, 240, 255, 0.055);
+    --dark-edge-color: rgba(0, 240, 255, 0.35);
+    --dark-scanline-color: rgba(0, 0, 0, 0.35);
 
-    --light-btn-color: #cfcfcf;
-    --dark-btn-color: #282828;
-
-    --light-text-color: #000000;
-    --dark-text-color: #f8fafc;
-
-    --light-link-hover: #3c3c3c;
-    --dark-link-hover: #d6eaff;
-
-    --light-box-bg: rgba(240, 240, 240, 0.85);
-    --dark-box-bg: rgba(61, 61, 61, 0.5);
-
-    --light-box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
-    --dark-box-shadow: 0 0 8px rgba(245, 248, 219, 0.386);
-
-    --light-accent-color: #9c762b;
-    --dark-accent-color: #ffe7a3;
-
-    --light-secondary-color: #f9ac11;
-    --dark-secondary-color: #ffffff;
-
-    --light-star-color: #000000c2;
-    --dark-star-color: #ffebb54a;
-
-    --light-line-color: #000000cb;
-    --dark-line-color: #ffffff49;
-
-    --light-glow-color: #000000;
-    --dark-glow-color: #ffffff;
+    /* ── CORPO PLAZA (light) ───────────────────────────── */
+    --light-bg-color: #e6e4de;
+    --light-btn-color: #d5d2c8;
+    --light-text-color: #0d0d12;
+    --light-link-hover: #007b8a;
+    --light-box-bg: rgba(250, 249, 245, 0.85);
+    --light-box-shadow: 0 0 14px rgba(209, 0, 71, 0.22);
+    --light-accent-color: #d10047;
+    --light-secondary-color: #007b8a;
+    --light-alert-color: #b8000c;
+    --light-star-color: #d1004773;
+    --light-line-color: #0d0d1226;
+    --light-glow-color: #d10047;
+    --light-grid-color: rgba(13, 13, 18, 0.05);
+    --light-edge-color: rgba(13, 13, 18, 0.3);
+    --light-scanline-color: rgba(0, 0, 0, 0.06);
 
     --bg-color: var(--dark-bg-color);
     --btn-color: var(--dark-btn-color);
@@ -46,9 +47,17 @@
     --box-shadow: var(--dark-box-shadow);
     --accent-color: var(--dark-accent-color);
     --secondary-color: var(--dark-secondary-color);
+    --alert-color: var(--dark-alert-color);
     --star-color: var(--dark-star-color);
     --line-color: var(--dark-line-color);
     --glow-color: var(--dark-glow-color);
+    --grid-color: var(--dark-grid-color);
+    --edge-color: var(--dark-edge-color);
+    --scanline-color: var(--dark-scanline-color);
+
+    /* Angular "chamfered panel" corners — the CP2077 UI signature */
+    --notch: 14px;
+    --notch-sm: 8px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -61,9 +70,13 @@
         --box-shadow: var(--light-box-shadow);
         --accent-color: var(--light-accent-color);
         --secondary-color: var(--light-secondary-color);
+        --alert-color: var(--light-alert-color);
         --star-color: var(--light-star-color);
         --line-color: var(--light-line-color);
         --glow-color: var(--light-glow-color);
+        --grid-color: var(--light-grid-color);
+        --edge-color: var(--light-edge-color);
+        --scanline-color: var(--light-scanline-color);
     }
 }
 
@@ -76,9 +89,13 @@
     --box-shadow: var(--dark-box-shadow);
     --accent-color: var(--dark-accent-color);
     --secondary-color: var(--dark-secondary-color);
+    --alert-color: var(--dark-alert-color);
     --star-color: var(--dark-star-color);
     --line-color: var(--dark-line-color);
     --glow-color: var(--dark-glow-color);
+    --grid-color: var(--dark-grid-color);
+    --edge-color: var(--dark-edge-color);
+    --scanline-color: var(--dark-scanline-color);
 }
 
 [data-theme="light"] {
@@ -90,22 +107,83 @@
     --box-shadow: var(--light-box-shadow);
     --accent-color: var(--light-accent-color);
     --secondary-color: var(--light-secondary-color);
+    --alert-color: var(--light-alert-color);
     --star-color: var(--light-star-color);
     --line-color: var(--light-line-color);
     --glow-color: var(--light-glow-color);
+    --grid-color: var(--light-grid-color);
+    --edge-color: var(--light-edge-color);
+    --scanline-color: var(--light-scanline-color);
 }
 
 
 html,
 body {
-    height: 100%;
+    min-height: 100%;
     overflow-x: hidden;
-    font-family: 'Nunito Sans', sans-serif;
-    line-height: 2;
+    font-family: 'Chakra Petch', 'Rajdhani', 'Nunito Sans', sans-serif;
+    line-height: 1.9;
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
     flex-direction: column;
+}
+
+/* Faint circuit grid. z-index 1 places it above the opaque canvas; as body's
+   first child it still paints below the header/container at the same level. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+/* CRT scanlines + flicker over the whole interface */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: repeating-linear-gradient(to bottom,
+            var(--scanline-color) 0px,
+            var(--scanline-color) 1px,
+            transparent 1px,
+            transparent 3px);
+    opacity: 0.55;
+    animation: crtFlicker 4s steps(60) infinite;
+}
+
+@keyframes crtFlicker {
+
+    0%,
+    96%,
+    100% {
+        opacity: 0.55;
+    }
+
+    97% {
+        opacity: 0.3;
+    }
+
+    98% {
+        opacity: 0.7;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    body::after,
+    header h1 a,
+    header h1 a::before,
+    header h1 a::after {
+        animation: none !important;
+    }
 }
 
 a {
@@ -127,6 +205,7 @@ a:hover {
     z-index: 0;
 }
 
+/* ── Theme switch: an angular power toggle ─────────────── */
 .theme-toggle {
     position: absolute;
     top: 1rem;
@@ -143,29 +222,34 @@ a:hover {
 .slider {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 28px;
-    background-color: var(--accent-color);
-    border-radius: 34px;
+    width: 58px;
+    height: 26px;
+    background-color: transparent;
+    border: 1px solid var(--accent-color);
+    border-radius: 0;
     cursor: pointer;
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    box-shadow: 0 0 10px -2px var(--accent-color);
 }
 
 .slider:before {
     content: "";
     position: absolute;
-    height: 20px;
+    height: 16px;
     width: 20px;
-    left: 4px;
+    left: 3px;
     bottom: 4px;
-    background-color: var(--bg-color);
-    border-radius: 50%;
-    transition: transform 0.3s;
+    background-color: var(--accent-color);
+    border-radius: 0;
+    clip-path: polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px);
+    transition: transform 0.25s steps(4);
 }
 
 input:checked+.slider:before {
-    transform: translateX(22px);
+    transform: translateX(29px);
 }
 
+/* ── Header / hero ─────────────────────────────────────── */
 header {
     padding: 2rem;
     text-align: center;
@@ -179,40 +263,136 @@ header {
 
 header img {
     width: 150px;
-    border-radius: 50%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 0;
     margin-top: 1rem;
+    border: 1px solid var(--accent-color);
+    clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
+    filter: saturate(1.15) contrast(1.05);
+    transition: filter 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-top: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+header h1 a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text-color);
+    animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+/* Chromatic-aberration glitch — clones are fed by data-text (set in theme.js) */
+header h1 a::before,
+header h1 a::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+}
+
+header h1 a::before {
+    left: 2px;
+    color: var(--alert-color);
+    clip-path: inset(0 0 55% 0);
+    animation: glitchTop 3.2s steps(2) infinite;
+}
+
+header h1 a::after {
+    left: -2px;
+    color: var(--secondary-color);
+    clip-path: inset(55% 0 0 0);
+    animation: glitchBottom 2.7s steps(2) infinite;
+}
+
+@keyframes glitchTop {
+
+    0%,
+    92%,
+    100% {
+        transform: translate(0);
+        opacity: 0;
+    }
+
+    93% {
+        transform: translate(-3px, -2px);
+        opacity: 0.9;
+    }
+
+    95% {
+        transform: translate(3px, 1px);
+        opacity: 0.9;
+    }
+
+    97% {
+        transform: translate(-2px, 0);
+        opacity: 0.6;
+    }
+}
+
+@keyframes glitchBottom {
+
+    0%,
+    90%,
+    100% {
+        transform: translate(0);
+        opacity: 0;
+    }
+
+    91% {
+        transform: translate(3px, 2px);
+        opacity: 0.9;
+    }
+
+    94% {
+        transform: translate(-3px, -1px);
+        opacity: 0.9;
+    }
+
+    96% {
+        transform: translate(2px, 0);
+        opacity: 0.6;
+    }
 }
 
 @keyframes glowPulse {
 
     0%,
     100% {
-        text-shadow: 0 0 1px var(--accent-color),
-            0 0 1px var(--accent-color),
-            0 0 1px var(--accent-color);
+        text-shadow: 0 0 2px var(--accent-color);
     }
 
     50% {
-        text-shadow: 0 0 2px var(--accent-color),
-            0 0 4px var(--accent-color),
-            0 0 4px var(--accent-color);
+        text-shadow: 0 0 6px var(--accent-color),
+            0 0 14px var(--accent-color);
+        text-shadow: 0 0 6px var(--accent-color),
+            0 0 14px var(--accent-color),
+            0 0 26px color-mix(in srgb, var(--accent-color) 35%, transparent);
     }
 }
 
-header h1 {
-    font-size: 3rem;
-    margin-top: 1rem;
-}
-
-header h1 a {
-    text-decoration: none;
-    color: var(--text-color);
-    animation: glowPulse 2.5s ease-in-out infinite;
+header h2 {
+    font-family: 'Share Tech Mono', ui-monospace, monospace;
+    font-size: 1.05rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--secondary-color);
+    border: none;
 }
 
 header p {
-    font-size: 1.2rem;
-    opacity: 0.8;
+    font-family: 'Share Tech Mono', ui-monospace, monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    opacity: 0.75;
 }
 
 .container {
@@ -234,13 +414,111 @@ h2 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     color: var(--accent-color);
+    letter-spacing: 0.03em;
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+h4 {
+    font-size: 1.05rem;
+    margin: 1rem 0 0.4rem;
+    color: var(--accent-color);
+    letter-spacing: 0.04em;
 }
 
 ul {
-    list-style: disc;
+    list-style: none;
     padding-left: 1.5rem;
 }
 
+ul>li {
+    position: relative;
+}
+
+ul>li::before {
+    content: "▸";
+    position: absolute;
+    left: -1.2rem;
+    color: var(--secondary-color);
+}
+
+ol {
+    padding-left: 1.6rem;
+}
+
+ol>li::marker {
+    color: var(--accent-color);
+    font-family: 'Share Tech Mono', ui-monospace, monospace;
+}
+
+blockquote {
+    margin: 1.5rem 0;
+    padding: 0.75rem 1.25rem;
+    border-left: 3px solid var(--alert-color);
+    background: linear-gradient(90deg, color-mix(in srgb, var(--alert-color) 10%, transparent), transparent);
+    font-style: italic;
+}
+
+code {
+    font-family: 'Share Tech Mono', ui-monospace, monospace;
+    color: var(--accent-color);
+    background: color-mix(in srgb, var(--text-color) 10%, transparent);
+    padding: 0.1rem 0.4rem;
+}
+
+pre {
+    font-family: 'Share Tech Mono', ui-monospace, monospace;
+    background: color-mix(in srgb, var(--text-color) 8%, transparent);
+    border-left: 2px solid var(--secondary-color);
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+}
+
+th,
+td {
+    border: 1px solid var(--edge-color);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+}
+
+th {
+    font-family: 'Share Tech Mono', ui-monospace, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--bg-color);
+    background: var(--accent-color);
+}
+
+tr:nth-child(even) td {
+    background: color-mix(in srgb, var(--text-color) 5%, transparent);
+}
+
+.content-box img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--edge-color);
+}
+
+/* ── Chips, links, buttons ─────────────────────────────── */
 .skills,
 .links {
     display: flex;
@@ -251,22 +529,36 @@ ul {
 .skills span,
 .links a,
 .btn-download {
+    position: relative;
     background: var(--btn-color);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
+    border: 1px solid var(--edge-color);
+    padding: 0.45rem 1rem;
+    border-radius: 0;
+    clip-path: polygon(var(--notch-sm) 0, 100% 0, 100% calc(100% - var(--notch-sm)), calc(100% - var(--notch-sm)) 100%, 0 100%, 0 var(--notch-sm));
+    font-family: 'Share Tech Mono', ui-monospace, monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     text-decoration: none;
     color: var(--text-color);
-    transition: all 0.2s ease-in-out;
+    transition: background 0.15s steps(3), color 0.15s steps(3), box-shadow 0.2s ease-in-out;
     cursor: pointer;
 }
 
-img:hover,
+/* clip-path crops box-shadow, so the neon halo is drawn with drop-shadow */
 .skills span:hover,
 .links a:hover,
-.btn-download:hover {
+.btn-download:hover,
+.skills span.glow,
+.links a.glow,
+.btn-download.glow {
     background: var(--accent-color);
     color: var(--bg-color);
-    box-shadow: var(--box-shadow);
+    filter: drop-shadow(0 0 6px var(--accent-color));
+    text-decoration: none;
+}
+
+header img:hover {
+    filter: saturate(1.4) contrast(1.15) drop-shadow(0 0 10px var(--accent-color));
 }
 
 .experience {
@@ -275,10 +567,15 @@ img:hover,
 
 .job-entry {
     margin-bottom: 2rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--line-color);
 }
 
 .job-entry .job-title {
     font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--secondary-color);
 }
 
 .job-meta {
@@ -292,38 +589,68 @@ img:hover,
 }
 
 .job-date {
+    font-family: 'Share Tech Mono', ui-monospace, monospace;
     opacity: 0.9;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     align-self: center;
+    color: var(--accent-color);
+    white-space: nowrap;
 }
 
 .job-entry hr {
     border: none;
-    height: 2px;
+    height: 1px;
     background: linear-gradient(to right, transparent, var(--accent-color), transparent);
     margin: 2rem 0;
 }
 
+/* ── Panels ────────────────────────────────────────────── */
 .content-box {
+    position: relative;
     background-color: var(--box-bg);
-    box-shadow: var(--box-shadow);
+    filter: drop-shadow(var(--box-shadow));
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: 0;
     margin-bottom: 2rem;
-    /* No width needed */
+    border: 1px solid var(--edge-color);
+    border-left: 3px solid var(--accent-color);
+    clip-path: polygon(var(--notch) 0, 100% 0, 100% calc(100% - var(--notch)), calc(100% - var(--notch)) 100%, 0 100%, 0 var(--notch));
 }
 
+/* HUD corner tick, top-right */
+.content-box::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 26px;
+    height: 26px;
+    border-top: 2px solid var(--secondary-color);
+    border-right: 2px solid var(--secondary-color);
+    opacity: 0.7;
+    pointer-events: none;
+}
 
 .section-heading {
-    font-size: 2rem;
-    border-bottom: 2px solid var(--accent-color);
+    position: relative;
+    font-size: 1.7rem;
+    border-bottom: 1px solid var(--accent-color);
     padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.section-heading::before {
+    content: "// ";
+    color: var(--secondary-color);
 }
 
 .container-heading {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     padding-bottom: 0.5rem;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .btn-download {
@@ -332,32 +659,46 @@ img:hover,
 }
 
 .glow-link {
-    color: #d1e8ff;
-    text-decoration: underline;
+    color: var(--secondary-color);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--secondary-color);
     position: relative;
-    transition: color 0.3s, text-shadow 0.3s;
+    transition: color 0.2s, text-shadow 0.2s, border-color 0.2s;
 }
 
-.glow-link:hover,
 .glow-link:visited,
 .glow-link:link {
-    color: var(--link-hover);
+    color: var(--secondary-color);
 }
 
 .glow-link:hover {
-    text-shadow: 0 0 8px var(--link-hover), 0 0 12px var(--link-hover);
+    color: var(--link-hover);
+    border-bottom-color: var(--link-hover);
+    text-shadow: 0 0 8px var(--link-hover), 0 0 16px var(--link-hover);
+    text-decoration: none;
 }
 
 footer {
     text-align: center;
     padding: 2rem;
-    font-size: 0.9rem;
+    font-family: 'Share Tech Mono', ui-monospace, monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     background: var(--bg-color);
+    border-top: 1px solid var(--edge-color);
     z-index: 1;
     position: relative;
-    /* bottom: 0;
-    left: 0;
-    right: 0; */
+}
+
+footer p::before {
+    content: "[ ";
+    color: var(--accent-color);
+}
+
+footer p::after {
+    content: " ]";
+    color: var(--accent-color);
 }
 
 @media (max-width: 600px) {
@@ -368,6 +709,20 @@ footer {
     .skills,
     .links {
         flex-direction: column;
+    }
+
+    .job-meta {
+        flex-direction: column;
+    }
+
+    .job-date {
+        align-self: flex-start;
+    }
+
+    /* wide tables scroll inside themselves instead of the page */
+    table {
+        display: block;
+        overflow-x: auto;
     }
 }
 
@@ -391,4 +746,5 @@ footer {
 
 .blog-list a:hover {
     color: var(--link-hover);
+    text-shadow: 0 0 8px var(--link-hover);
 }

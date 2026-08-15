@@ -1,7 +1,6 @@
 const themeToggle = document.getElementById('themeToggle');
 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 const savedTheme = localStorage.getItem('theme');
-const style = getComputedStyle(document.body);
 
 function hexToRgb(hex) {
     const parsed = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -13,6 +12,9 @@ function hexToRgb(hex) {
 }
 
 function applyTheme(theme) {
+    // <html> is styled too, and its background is what fills the page beyond
+    // body's box — so both elements need the attribute or the two disagree.
+    document.documentElement.setAttribute('data-theme', theme);
     document.body.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
 }
@@ -30,14 +32,15 @@ const themeColors = {
         this.lineColor = style.getPropertyValue('--line-color').trim();
         this.glowColor = style.getPropertyValue('--glow-color').trim();
         this.accentColor = style.getPropertyValue('--accent-color').trim();
-        this.secondayColor = style.getPropertyValue('--seconday-color').trim();
+        this.secondaryColor = style.getPropertyValue('--secondary-color').trim();
+        this.alertColor = style.getPropertyValue('--alert-color').trim();
     },
     starColor: '',
     lineColor: '',
     glowColor: '',
     accentColor: '',
-    secondayColor: '',
-
+    secondaryColor: '',
+    alertColor: '',
 }
 const observer = new MutationObserver(() => themeColors.update());
 observer.observe(document.body, { attributes: true, attributeFilter: ['data-theme'] });
@@ -50,3 +53,8 @@ if (savedTheme) {
 }
 themeColors.update();
 
+// The header glitch clones read their text from data-text, so every page gets
+// it wired up here instead of duplicating the attribute across 20+ files.
+document.querySelectorAll('header h1 a').forEach(el => {
+    el.setAttribute('data-text', el.textContent.trim());
+});
